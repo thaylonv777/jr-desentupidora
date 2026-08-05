@@ -209,8 +209,8 @@ nav.menu a:hover::after { width: 100%; }
 .why-orb { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(63,61,143,0.18) 0%, transparent 70%); filter: blur(40px); top: -200px; right: -200px; pointer-events: none; }
 .why-inner { display: grid; gap: 60px; align-items: center; position: relative; z-index: 2; }
 @media (min-width: 960px) { .why-inner { grid-template-columns: 1fr 1fr; gap: 80px; } }
-.why-img { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
-.why-img img { width: 100%; height: 100%; object-fit: cover; }
+.why-img { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 3/4; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+.why-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
 .why-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(10,14,26,0.6) 100%); }
 .why-badge { position: absolute; bottom: 24px; left: 24px; z-index: 2; background: rgba(10,14,26,0.85); backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 14px; padding: 18px 24px; }
 .why-badge .n { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--jr-orange); line-height: 1; }
@@ -236,13 +236,11 @@ nav.menu a:hover::after { width: 100%; }
 .areas { background: var(--night); }
 .areas-wrap { display: grid; gap: 50px; align-items: center; }
 @media (min-width: 900px) { .areas-wrap { grid-template-columns: 1fr 1.1fr; gap: 70px; } }
-.area-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-.area-tag { padding: 12px 22px; background: var(--night-3); border: 1px solid var(--line); border-radius: 100px; font-size: 0.95rem; color: var(--text); font-weight: 500; transition: all 0.3s; }
-.area-tag:hover { border-color: var(--jr-orange); color: var(--jr-orange); transform: translateY(-2px); }
-.area-tag.primary { background: var(--jr-blue); border-color: var(--jr-blue-bright); color: #fff; }
+.region-points { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+.rp { display: flex; align-items: center; gap: 14px; color: var(--text); font-size: 1rem; }
+.rp svg { flex-shrink: 0; width: 22px; height: 22px; stroke: var(--jr-orange); fill: none; stroke-width: 2.2; padding: 5px; background: rgba(242,140,40,0.12); border: 1px solid rgba(242,140,40,0.25); border-radius: 8px; box-sizing: content-box; width: 18px; height: 18px; }
 .map-card { position: relative; background: var(--night-2); border: 1px solid var(--line); border-radius: 20px; padding: 44px; overflow: hidden; }
-.map-card .ping { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--jr-orange); box-shadow: 0 0 0 rgba(242,140,40,0.6); animation: ripple 2.5s infinite; }
-@keyframes ripple { 0% { box-shadow: 0 0 0 0 rgba(242,140,40,0.5); } 70% { box-shadow: 0 0 0 24px rgba(242,140,40,0); } 100% { box-shadow: 0 0 0 0 rgba(242,140,40,0); } }
+.map-glow { position: absolute; top: -80px; right: -80px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(242,140,40,0.15) 0%, transparent 70%); filter: blur(30px); pointer-events: none; }
 .map-stat { font-family: 'Archivo', sans-serif; font-weight: 800; color: #fff; }
 .map-big { font-size: 3.5rem; line-height: 1; color: var(--jr-orange); }
 
@@ -272,15 +270,24 @@ footer { background: var(--night); border-top: 1px solid var(--line); padding: 6
 /* ===== WHATSAPP FLOAT ===== */
 .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 60; display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; padding: 14px 22px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 8px 30px rgba(37,211,102,0.4); transition: transform 0.25s; }
 .wa-float:hover { transform: scale(1.05); }
-.wa-float .pulse { position: relative; width: 10px; height: 10px; }
-.wa-float .pulse::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #fff; animation: pulse 2s infinite; }
-.wa-float .pulse::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #fff; }
+.wa-float svg { width: 22px; height: 22px; flex-shrink: 0; }
 
+@media (max-width: 860px) {
+  .header-cta { padding: 10px 16px; font-size: 13px; white-space: nowrap; }
+  .header-cta svg { display: none; }
+}
 @media (max-width: 640px) {
   .section { padding: 80px 24px; }
   .hero-content { padding: 110px 24px 60px; }
-  .wa-float span.txt { display: none; }
+  .nav-inner { padding: 0 20px; }
+  .logo img { height: 38px; }
+  .logo-text .name { font-size: 15px; }
+  .logo-text .tag { font-size: 9px; }
+  .header-cta { padding: 9px 14px; font-size: 12px; border-radius: 8px; }
   .cta-box { padding: 52px 28px; }
+  .wa-float { padding: 0; width: 56px; height: 56px; justify-content: center; border-radius: 50%; }
+  .wa-float span.txt { display: none; }
+  .wa-float svg { width: 26px; height: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
@@ -305,8 +312,8 @@ footer { background: var(--night); border-top: 1px solid var(--line); padding: 6
     <nav class="menu">
       <a href="index.html">Início</a>
       <a href="servicos.html">Serviços</a>
+      <a href="artigos.html">Artigos</a>
       <a href="contato.html">Contato</a>
-      <a href="#regiao">Região</a>
     </nav>
     <a href="https://wa.me/5551998611800?text=Ol%C3%A1!%20Preciso%20de%20um%20servi%C3%A7o%20de%20desentupimento." target="_blank" rel="noopener" class="header-cta">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.6-1.5-.9-2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
@@ -446,30 +453,25 @@ footer { background: var(--night); border-top: 1px solid var(--line); padding: 6
   <div class="container areas-wrap">
     <div>
       <div class="eyebrow reveal">Onde atendemos</div>
-      <h2 class="section-title reveal d1">Montenegro é a base.<br><span class="dim">A região toda é atendida.</span></h2>
-      <p class="section-lead reveal d2">Sediada em Montenegro, a JR Desentupidora atende cidades vizinhas e toda a região do Vale do Caí e entorno — chegando até a Grande Porto Alegre quando necessário.</p>
-      <div class="area-tags reveal d2">
-        <span class="area-tag primary">Montenegro</span>
-        <span class="area-tag">São Sebastião do Caí</span>
-        <span class="area-tag">Estância Velha</span>
-        <span class="area-tag">Novo Hamburgo</span>
-        <span class="area-tag">São Leopoldo</span>
-        <span class="area-tag">Sapiranga</span>
-        <span class="area-tag">Portão</span>
-        <span class="area-tag">Porto Alegre</span>
+      <h2 class="section-title reveal d1">Montenegro e <span class="dim">toda a região.</span></h2>
+      <p class="section-lead reveal d2">Sediada em Montenegro, a JR Desentupidora atende toda a região metropolitana e a Grande Porto Alegre. Seja na sua casa, no comércio ou na indústria — a gente chega até você.</p>
+      <div class="region-points reveal d2">
+        <div class="rp"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Atendimento residencial, comercial e industrial</span></div>
+        <div class="rp"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Deslocamento para toda a região metropolitana</span></div>
+        <div class="rp"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Chegada rápida na região de Montenegro</span></div>
       </div>
     </div>
     <div class="map-card reveal d1">
-      <div class="ping" style="top:44px; right:80px;"></div>
-      <div class="ping" style="top:120px; left:100px; animation-delay:0.8s;"></div>
-      <div class="ping" style="bottom:70px; right:120px; animation-delay:1.6s;"></div>
-      <div style="margin-bottom:32px;">
-        <div class="map-stat map-big">120+</div>
-        <div style="color:var(--text-dim); font-size:0.95rem; margin-top:8px;">buscas por desentupidora todo mês na região</div>
-      </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; padding-top:28px; border-top:1px solid var(--line);">
-        <div><div class="map-stat" style="font-size:1.8rem;">Vale do Caí</div><div style="color:var(--text-faint); font-size:0.85rem; margin-top:4px;">e entorno atendidos</div></div>
-        <div><div class="map-stat" style="font-size:1.8rem; color:var(--jr-orange);">Rápido</div><div style="color:var(--text-faint); font-size:0.85rem; margin-top:4px;">atendimento estendido</div></div>
+      <div class="map-glow"></div>
+      <div style="position:relative; z-index:2;">
+        <div style="margin-bottom:28px;">
+          <div class="map-stat map-big">20-40<span style="font-size:1.6rem;">min</span></div>
+          <div style="color:var(--text-dim); font-size:0.95rem; margin-top:10px;">tempo médio de chegada na região de Montenegro</div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; padding-top:28px; border-top:1px solid var(--line);">
+          <div><div class="map-stat" style="font-size:1.8rem;">18 anos</div><div style="color:var(--text-faint); font-size:0.85rem; margin-top:4px;">de experiência</div></div>
+          <div><div class="map-stat" style="font-size:1.8rem; color:var(--jr-orange);">Grátis</div><div style="color:var(--text-faint); font-size:0.85rem; margin-top:4px;">orçamento sem compromisso</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -503,6 +505,7 @@ footer { background: var(--night); border-top: 1px solid var(--line); padding: 6
       <h5>Navegação</h5>
       <a href="index.html">Início</a>
       <a href="servicos.html">Serviços</a>
+      <a href="artigos.html">Artigos</a>
       <a href="contato.html">Contato</a>
     </div>
     <div class="foot-col">
@@ -519,8 +522,8 @@ footer { background: var(--night); border-top: 1px solid var(--line); padding: 6
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/5551998611800?text=Ol%C3%A1!%20Preciso%20de%20um%20servi%C3%A7o%20de%20desentupimento." target="_blank" rel="noopener" class="wa-float">
-  <span class="pulse"></span>
+<a href="https://wa.me/5551998611800?text=Ol%C3%A1!%20Preciso%20de%20um%20servi%C3%A7o%20de%20desentupimento." target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 1.8a8.2 8.2 0 016.9 12.6l-.2.3.8 2.8-2.9-.8-.3.2A8.2 8.2 0 1112 3.8zm4.5 10.6c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.6-1.5-.9-2c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
   <span class="txt">Falar no WhatsApp</span>
 </a>
 
