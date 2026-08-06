@@ -98,18 +98,21 @@ nav.menu a:hover, nav.menu a.active { color: #fff; }
 .reveal.in { opacity: 1; transform: translateY(0); }
 .reveal.d1 { transition-delay: 0.1s; } .reveal.d2 { transition-delay: 0.2s; }
 
-/* Service rows */
-.svc-row { display: grid; gap: 40px; align-items: center; padding: 56px 0; border-bottom: 1px solid var(--line); }
-@media (min-width: 900px) { .svc-row { grid-template-columns: 80px 1fr 1fr; gap: 48px; } .svc-row.rev .svc-visual { order: -1; } }
-.svc-num { font-family: 'Archivo'; font-weight: 900; font-size: 3rem; color: transparent; -webkit-text-stroke: 1.5px var(--jr-blue-bright); line-height: 1; }
-.svc-body h2 { font-family: 'Archivo'; font-weight: 800; font-size: 1.9rem; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
-.svc-body > p { color: var(--text-dim); font-size: 1.05rem; line-height: 1.75; margin-bottom: 20px; }
-.svc-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-.svc-tags span { font-size: 0.82rem; color: var(--jr-orange); background: rgba(242,140,40,0.1); border: 1px solid rgba(242,140,40,0.2); padding: 6px 14px; border-radius: 100px; }
-.svc-visual { aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+/* Service cards - grid uniforme */
+.svc-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 640px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .svc-grid { grid-template-columns: repeat(3, 1fr); } }
+.svc-card { position: relative; background: var(--night-3); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s; display: flex; flex-direction: column; }
+.svc-card:hover { transform: translateY(-8px); border-color: rgba(90,87,196,0.4); }
+.svc-visual { aspect-ratio: 16/10; overflow: hidden; background: linear-gradient(135deg, var(--jr-blue) 0%, var(--night-3) 100%); display: flex; align-items: center; justify-content: center; position: relative; }
 .svc-visual img { width: 100%; height: 100%; object-fit: cover; }
-.svc-visual.gradient { background: linear-gradient(135deg, var(--jr-blue) 0%, var(--night-3) 100%); display: flex; align-items: center; justify-content: center; }
-.svc-visual.gradient svg { width: 90px; height: 90px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 1; }
+.svc-visual svg { width: 62px; height: 62px; stroke: rgba(255,255,255,0.4); fill: none; stroke-width: 1; }
+.svc-num { position: absolute; top: 16px; left: 18px; font-family: 'Archivo'; font-weight: 900; font-size: 1.6rem; color: rgba(255,255,255,0.9); line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.5); z-index: 2; }
+.svc-body { padding: 28px; display: flex; flex-direction: column; flex-grow: 1; }
+.svc-body h2 { font-family: 'Archivo'; font-weight: 700; font-size: 1.4rem; color: #fff; margin-bottom: 12px; letter-spacing: -0.01em; }
+.svc-body > p { color: var(--text-dim); font-size: 0.98rem; line-height: 1.65; margin-bottom: 20px; flex-grow: 1; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.svc-tags span { font-size: 0.78rem; color: var(--jr-orange); background: rgba(242,140,40,0.1); border: 1px solid rgba(242,140,40,0.2); padding: 5px 12px; border-radius: 100px; }
 
 .cta-final { padding: 100px 32px; background: linear-gradient(180deg, var(--night) 0%, var(--night-2) 100%); }
 .cta-box { max-width: 900px; margin: 0 auto; background: linear-gradient(135deg, var(--jr-blue) 0%, #2A285F 100%); border-radius: 28px; padding: 64px 48px; text-align: center; position: relative; overflow: hidden; }
@@ -173,54 +176,80 @@ footer { background: var(--night); border-top: 1px solid var(--line); padding: 6
 <section class="section">
   <div class="container">
 
-    <div class="svc-row reveal">
-      <div class="svc-num">01</div>
-      <div class="svc-body">
-        <h2>Desentupimento</h2>
-        <p>Desentupir pia, vaso sanitário, ralos, tanques e canos em geral. Atendemos residências, comércios e indústrias com técnica e equipamento adequados para cada tipo de entupimento — sem quebrar o que não precisa.</p>
-        <div class="svc-tags"><span>Desentupir pia</span><span>Desentupir vaso sanitário</span><span>Ralos e canos</span></div>
-      </div>
-      <div class="svc-visual"><img src="servico1.jpeg" alt="Desentupimento de canos em Montenegro"></div>
-    </div>
+    <div class="svc-grid">
 
-    <div class="svc-row rev reveal">
-      <div class="svc-num">02</div>
-      <div class="svc-body">
-        <h2>Limpeza de Fossa</h2>
-        <p>Esgotamento e limpeza de fossa séptica e sumidouro com caminhão a vácuo próprio. Retiramos os efluentes e limpamos o reservatório por completo, garantindo o funcionamento correto e evitando mau cheiro e transbordamento.</p>
-        <div class="svc-tags"><span>Fossa séptica</span><span>Limpa fossa</span><span>Sumidouro</span></div>
+      <div class="svc-card reveal">
+        <div class="svc-visual">
+          <span class="svc-num">01</span>
+          <img src="servico1.jpeg" alt="Desentupimento de canos em Montenegro">
+        </div>
+        <div class="svc-body">
+          <h2>Desentupimento</h2>
+          <p>Desentupir pia, vaso sanitário, ralos, tanques e canos em geral. Atendemos residências, comércios e indústrias com técnica e equipamento adequados — sem quebrar o que não precisa.</p>
+          <div class="svc-tags"><span>Desentupir pia</span><span>Desentupir vaso</span><span>Ralos e canos</span></div>
+        </div>
       </div>
-      <div class="svc-visual gradient"><svg viewBox="0 0 24 24"><path d="M4 8h16v8a4 4 0 01-4 4H8a4 4 0 01-4-4V8z"/><path d="M4 8l2-4h12l2 4"/></svg></div>
-    </div>
 
-    <div class="svc-row reveal">
-      <div class="svc-num">03</div>
-      <div class="svc-body">
-        <h2>Hidrojateamento</h2>
-        <p>Limpeza de tubulações com jato de água de alta pressão. Remove gordura acumulada, raízes, incrustações e resíduos que causam entupimentos recorrentes — deixando o encanamento como novo.</p>
-        <div class="svc-tags"><span>Alta pressão</span><span>Limpeza de tubulação</span><span>Remoção de gordura</span></div>
+      <div class="svc-card reveal d1">
+        <div class="svc-visual">
+          <span class="svc-num">02</span>
+          <svg viewBox="0 0 24 24"><path d="M4 8h16v8a4 4 0 01-4 4H8a4 4 0 01-4-4V8z"/><path d="M4 8l2-4h12l2 4"/></svg>
+        </div>
+        <div class="svc-body">
+          <h2>Limpeza de Fossa</h2>
+          <p>Esgotamento e limpeza de fossa séptica e sumidouro com caminhão a vácuo próprio. Retiramos os efluentes e limpamos o reservatório por completo, evitando mau cheiro e transbordamento.</p>
+          <div class="svc-tags"><span>Fossa séptica</span><span>Limpa fossa</span><span>Sumidouro</span></div>
+        </div>
       </div>
-      <div class="svc-visual gradient"><svg viewBox="0 0 24 24"><path d="M12 2v6m0 0l3-3m-3 3L9 5"/><path d="M5 13c0 4 3 7 7 7s7-3 7-7c0-3-4-8-7-11-3 3-7 8-7 11z"/></svg></div>
-    </div>
 
-    <div class="svc-row rev reveal">
-      <div class="svc-num">04</div>
-      <div class="svc-body">
-        <h2>Caça Vazamento</h2>
-        <p>Detecção de vazamentos em paredes, pisos ou solo com equipamento eletrônico (geofone). Localizamos o ponto exato do vazamento sem quebra-quebra desnecessário, economizando tempo e dinheiro na reparação.</p>
-        <div class="svc-tags"><span>Geofone eletrônico</span><span>Sem quebra-quebra</span><span>Localização precisa</span></div>
+      <div class="svc-card reveal d2">
+        <div class="svc-visual">
+          <span class="svc-num">03</span>
+          <svg viewBox="0 0 24 24"><path d="M12 2v6m0 0l3-3m-3 3L9 5"/><path d="M5 13c0 4 3 7 7 7s7-3 7-7c0-3-4-8-7-11-3 3-7 8-7 11z"/></svg>
+        </div>
+        <div class="svc-body">
+          <h2>Hidrojateamento</h2>
+          <p>Limpeza de tubulações com jato de água de alta pressão. Remove gordura acumulada, raízes, incrustações e resíduos que causam entupimentos recorrentes — deixando o encanamento como novo.</p>
+          <div class="svc-tags"><span>Alta pressão</span><span>Limpeza de tubulação</span><span>Remoção de gordura</span></div>
+        </div>
       </div>
-      <div class="svc-visual gradient"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-    </div>
 
-    <div class="svc-row reveal">
-      <div class="svc-num">05</div>
-      <div class="svc-body">
-        <h2>Sucção de Resíduos</h2>
-        <p>Sucção de resíduos líquidos e pastosos, caixas de gordura, reservatórios e caixas d'água com equipamento a vácuo. Ideal para manutenção preventiva de estabelecimentos comerciais e industriais.</p>
-        <div class="svc-tags"><span>Caixa de gordura</span><span>Resíduos líquidos</span><span>Reservatórios</span></div>
+      <div class="svc-card reveal">
+        <div class="svc-visual">
+          <span class="svc-num">04</span>
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <div class="svc-body">
+          <h2>Caça Vazamento</h2>
+          <p>Detecção de vazamentos em paredes, pisos ou solo com equipamento eletrônico (geofone). Localizamos o ponto exato sem quebra-quebra desnecessário, economizando tempo e dinheiro.</p>
+          <div class="svc-tags"><span>Geofone</span><span>Sem quebra-quebra</span><span>Localização precisa</span></div>
+        </div>
       </div>
-      <div class="svc-visual gradient"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+
+      <div class="svc-card reveal d1">
+        <div class="svc-visual">
+          <span class="svc-num">05</span>
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="svc-body">
+          <h2>Sucção de Resíduos</h2>
+          <p>Sucção de resíduos líquidos e pastosos, caixas de gordura, reservatórios e caixas d'água com equipamento a vácuo. Ideal para manutenção preventiva de comércios e indústrias.</p>
+          <div class="svc-tags"><span>Caixa de gordura</span><span>Resíduos líquidos</span><span>Reservatórios</span></div>
+        </div>
+      </div>
+
+      <div class="svc-card reveal d2">
+        <div class="svc-visual">
+          <span class="svc-num">06</span>
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </div>
+        <div class="svc-body">
+          <h2>Sumidouro</h2>
+          <p>Limpeza e manutenção de sumidouros para garantir o escoamento correto e evitar transbordamentos e mau cheiro. Serviço completo com a estrutura própria da JR.</p>
+          <div class="svc-tags"><span>Escoamento</span><span>Manutenção</span><span>Sem mau cheiro</span></div>
+        </div>
+      </div>
+
     </div>
 
   </div>
