@@ -209,8 +209,8 @@ nav.menu a:hover::after { width: 100%; }
 .why-orb { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(63,61,143,0.18) 0%, transparent 70%); filter: blur(40px); top: -200px; right: -200px; pointer-events: none; }
 .why-inner { display: grid; gap: 60px; align-items: center; position: relative; z-index: 2; }
 @media (min-width: 960px) { .why-inner { grid-template-columns: 1fr 1fr; gap: 80px; } }
-.why-img { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
-.why-img img { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+.why-img { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.5); background: var(--night-3); }
+.why-img img { width: 100%; height: auto; display: block; }
 .why-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(10,14,26,0.6) 100%); }
 .why-badge { position: absolute; bottom: 24px; left: 24px; z-index: 2; background: rgba(10,14,26,0.85); backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 14px; padding: 18px 24px; }
 .why-badge .n { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--jr-orange); line-height: 1; }
